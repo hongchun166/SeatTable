@@ -1,6 +1,7 @@
 package com.qfdqc.views.demo.a;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.qfdqc.views.seattable.UserPojo;
 
@@ -191,26 +192,25 @@ public class BeanUtils {
     }
 
 
-
+    int widhtSpace=0;
+    int heigthSpace=0;
     public void start(List<UserBean> list){
+
+        widhtSpace=MConstacts.getInstance().getViewWidth()+MConstacts.getInstance().getViewSpce();
+        heigthSpace=MConstacts.getInstance().getViewHeight()+MConstacts.getInstance().getViewSpce();
+
         UserBean rootBean = list.get(0);
-        int startX=MConstacts.getInstance().getWindownWidth()/2;
+        int startX=100;
         int startY=100;
+        rootBean.setX(startX);
+        rootBean.setY(startY);
         UserBean w = map.get(rootBean.getSid());
         if(w!=null){
-            startX=MConstacts.getInstance().getWindownWidth()/2-MConstacts.getInstance().getViewWidth()-MConstacts.getInstance().getViewSpce()/2;
-            rootBean.setX(startX);
-            rootBean.setY(startY);
-
-            w.setX(rootBean.getX() + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth());
+            w.setX(rootBean.getX() +widhtSpace);
             w.setY(rootBean.getY());
             rootBean.setWife(w);
-        }else {
-            rootBean.setX(startX);
-            rootBean.setY(startY);
         }
-
-        calcPot(list,rootBean);
+        calcPot2222222222(list,rootBean);
         for (int i = 0;i<list.size();i++){
             UserBean bean = list.get(i);
             System.out.println(bean.getId() + "-" + bean.getX() + "-" + bean.getY()+"-"+bean.getNickName()+"-"+bean.getName());
@@ -227,46 +227,117 @@ public class BeanUtils {
                 if(rootBean.getSons().size() == 0){
                     ub.setX(rootBean.getX());
                 }else{
-                    if((rootBean.getNextPot()) < xMax){
+                    int lastSonX=getNextPot(rootBean);
+                    if(lastSonX < xMax){
                         ub.setX(xMax);
                     }else{
-                        ub.setX(rootBean.getNextPot());
+                        ub.setX(lastSonX);
                     }
-
                 }
-
-                ub.setY(rootBean.getY() +MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewHeight());
+                ub.setY(rootBean.getY() +heigthSpace);
                 ub.setFather(rootBean);
                 rootBean.getSons().add(ub);
 
                 if(ub.getSid() != 0){
                     UserBean w = map.get(ub.getSid());
-                    w.setX(ub.getX() + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth());
+                    w.setX(ub.getX() + widhtSpace);
                     w.setY(ub.getY());
                     ub.setWife(w);
-//                    if(w.getX() >= xMax){
-//                        xMax = w.getX() + 2;
-//                    }
                 }
-
                 if(ub.getX() >= xMax){
-                    xMax = ub.getX() + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth();
+                    xMax = ub.getX() + widhtSpace;
                 }
-
                 calcPot(list,ub);
             }
         }
-        rootBean.changPot();
+
+        chanPot(rootBean);
 
         if(rootBean.getSons().size() != 0){
-            if(rootBean.getNextPot() > xMax){
-                xMax = rootBean.getNextPot();
+            if(getNextPot(rootBean)> xMax){
+                xMax = getNextPot(rootBean);
             }
         }
         if(rootBean.getWife() != null){
             if(rootBean.getWife().getX() > xMax){
-                xMax = rootBean.getWife().getX() + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth();
+                xMax = rootBean.getWife().getX() + widhtSpace;
             }
         }
     }
+    public void calcPot2222222222(List<UserBean> list,UserBean rootBean){
+        int rootId = rootBean.getId();
+        for(int i = 0;i<list.size();i++){
+            UserBean ub = list.get(i);
+            if(ub.getFid() == rootId){
+                if(rootBean.getSons().size() == 0){
+                    ub.setX(rootBean.getX());
+                }else{
+                    int lastSonX=getNextPot(rootBean);
+                    if(lastSonX < xMax){
+                        ub.setX(xMax);
+                    }else{
+                        ub.setX(lastSonX);
+                    }
+                }
+                ub.setY(rootBean.getY() +heigthSpace);
+                ub.setFather(rootBean);
+                rootBean.getSons().add(ub);
+
+                if(ub.getSid() != 0){
+                    UserBean w = map.get(ub.getSid());
+                    w.setX(ub.getX() + widhtSpace);
+                    w.setY(ub.getY());
+                    ub.setWife(w);
+                }
+                if(ub.getX() >= xMax){
+                    xMax = ub.getX() + widhtSpace;
+                }
+                calcPot(list,ub);
+            }
+        }
+        chanPot(rootBean);
+    }
+
+    /**
+     * 获取最后一个孩子的X坐标值,孩子有伴侣就获取伴侣的
+     * @param userBean
+     */
+    private int getNextPot(UserBean userBean){
+        UserBean lastSon = userBean.getSons().get(userBean.getSons().size()-1);
+        int jx = lastSon.getX() +widhtSpace;
+        if(lastSon.getWife() != null){
+            jx = jx + widhtSpace;
+        }
+        return jx;
+    }
+    /**
+     * 子类坐标算完后，再次计算父类的坐标,到子类中间
+     * @param userBean
+     */
+    private void chanPot(UserBean userBean){
+        //添加子节点，自己坐标位置的变化
+            if(userBean.getSons().size() == 0 ){  //所添加孩子为第一个孩子，则坐标不影响
+            }else if ( userBean.getSons().size() == 1){
+
+            }else if(userBean.getSons().size() == 2){
+                if (userBean.getSons().get(0).getWife()==null || userBean.getSons().get(0).getWife()==null){
+
+                }else {
+                    int x = (userBean.getSons().get(0).getX() + userBean.getSons().get(userBean.getSons().size()-1).getX())/2;   //不是第一个孩子，说明自己的坐标需要移动，x坐标右移1位
+                    userBean.setX(x);
+                    UserBean wife=userBean.getWife();
+                    if( wife!= null){
+                        wife.setX(x+widhtSpace);
+                    }
+                }
+            }else{
+               int x = (userBean.getSons().get(0).getX() + userBean.getSons().get(userBean.getSons().size()-1).getX())/2;   //不是第一个孩子，说明自己的坐标需要移动，x坐标右移1位
+                userBean.setX(x);
+                UserBean wife=userBean.getWife();
+                if( wife!= null){
+                    wife.setX(x+widhtSpace);
+                }
+            }
+    }
+
 }

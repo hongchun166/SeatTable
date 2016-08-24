@@ -51,16 +51,16 @@ public class MySurfaceViewActivity extends AppCompatActivity {
         util.start(list);
         mTreeView.setData(list);
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                UserBean userBean=list.get(10);
-//                Log.i(TAG,userBean.getName());
-//                int x=userBean.getX();
-//                int y=userBean.getY();
-//                hvScrollView.smoothScrollTo(x,y);
-//            }
-//        },500);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                UserBean userBean=list.get(0);
+                Log.i(TAG,userBean.getName());
+                int x=userBean.getX();
+                int y=userBean.getY();
+                hvScrollView.smoothScrollTo(x,y);
+            }
+        },500);
     }
 
     final float minScale=0.3F;

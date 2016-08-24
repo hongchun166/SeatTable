@@ -30,29 +30,6 @@ public class UserBean {
     private int y;
 
 
-    //添加子节点，自己坐标位置的变化
-    public void  changPot(){
-        if(sons.size() == 0 || sons.size() == 1){  //所添加孩子为第一个孩子，则坐标不影响
-        	
-        }else{
-            x = (sons.get(0).getX() + sons.get(sons.size()-1).getX())/2;   //不是第一个孩子，说明自己的坐标需要移动，x坐标右移1位
-            if( wife!= null){
-            	wife.x = x + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth();
-            }
-        }
-        
-    }
-
-
-    public int getNextPot(){
-    	UserBean lastSon = sons.get(sons.size()-1);
-    	int jx = lastSon.getX() + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth();
-    	if(lastSon.getWife() != null){
-    		jx = jx + MConstacts.getInstance().getViewSpce()+MConstacts.getInstance().getViewWidth();
-    	}
-    	return jx;
-    }
-
     public UserBean(int id, int fid, int mid, int sid, int x, int y) {
         this.id = id;
         this.fid = fid;
