@@ -8,10 +8,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.qfdqc.views.demo.TestActivity">
-
-    <com.qfdqc.views.seattable.SeatTable
-        android:id="@+id/seatView"
-        android:background="#ffffff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.qfdqc.views.demo.view.MyView
+        android:id="@+id/myView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fafafa"
+        />
 </RelativeLayout>

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         seatTableView = (SeatTable) findViewById(R.id.seatView);
         seatTableView.setScreenName("8号厅荧幕");//设置屏幕名称
-        seatTableView.setMaxSelected(3);//设置最多选中
+        seatTableView.setMaxSelected(Integer.MAX_VALUE);//设置最多选中
 
         seatTableView.setSeatChecker(new SeatTable.SeatChecker() {
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        seatTableView.setData(10,15);
+        seatTableView.setData(15,15);
 
     }
 
