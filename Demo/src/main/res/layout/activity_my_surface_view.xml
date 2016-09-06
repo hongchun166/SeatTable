@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="刷新"
-            android:background="@drawable/nick_name_man_bg"
+            android:background="@drawable/tree_nick_name_man_bg"
             android:textColor="@android:color/black"
             />
     </LinearLayout>

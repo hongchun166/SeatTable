@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="D:\svncheckout\fragmenworksdk\SeatTable-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="85f5e440a4d9b824436f2cfd132214bebaf2597f">
+        <dex dex="D:\svncheckout\fragmenworksdk\SeatTable-master\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_1254e8bd30a87efc703647ec0480e43e84b93971.jar" />
+    </item>
+
+</items>

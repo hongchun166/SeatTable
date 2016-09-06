@@ -1,23 +1,14 @@
 package com.qfdqc.views.demo.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
-import android.view.SurfaceHolder;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,7 +19,6 @@ import com.qfdqc.views.demo.R;
 import com.qfdqc.views.demo.a.MConstacts;
 import com.qfdqc.views.demo.a.UserBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -87,7 +77,7 @@ public class MTreeView extends FrameLayout implements View.OnClickListener{
         }
     }
     private View getAddUserPojoView(UserBean userBean){
-        View view=layoutInflater.inflate(R.layout.tree_item,null);
+        View view=layoutInflater.inflate(R.layout.item_family_tree_person_head,null);
 
         View viewItem=view.findViewById(R.id.view_item);
         ImageView headView= (ImageView) view.findViewById(R.id.view_headView);
@@ -96,10 +86,10 @@ public class MTreeView extends FrameLayout implements View.OnClickListener{
 
         int sex=userBean.getSex();
         if(sex==0){
-            nickNameView.setBackgroundResource(R.drawable.nick_name_woman_bg);
+            nickNameView.setBackgroundResource(R.drawable.tree_nick_name_woman_bg);
             nickNameView.setTextColor(Color.parseColor("#bf0000"));
         }else if(sex==1){
-            nickNameView.setBackgroundResource(R.drawable.nick_name_man_bg);
+            nickNameView.setBackgroundResource(R.drawable.tree_nick_name_man_bg);
             nickNameView.setTextColor(Color.parseColor("#007fff"));
         }
         nameView.setText(userBean.getName());

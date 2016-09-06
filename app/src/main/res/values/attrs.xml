@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShopItemView">
+        <attr name="zuanshi_value" format="string"/>
+        <attr name="zen_value" format="string"/>
+        <attr name="money_value" format="string"/>
+    </declare-styleable>
+</resources>

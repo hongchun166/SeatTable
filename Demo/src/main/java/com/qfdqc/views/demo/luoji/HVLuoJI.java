@@ -50,10 +50,9 @@ public class HVLuoJI implements ScaleGestureDetector.OnScaleGestureListener,View
         log("===========onScale============="+sf);
         if(sf>1){
             scale+=0.01;
-        }else if(sf<=1){
+        }else if(sf<1){
             scale-=0.01;
         }
-
         if(isScaleIng){
             if(scale>1.1){
                 scale=1.1f;

@@ -1,1 +1,1 @@
-include ':Demo', ':SeatTable'
+include ':Demo', ':SeatTable', ':app'

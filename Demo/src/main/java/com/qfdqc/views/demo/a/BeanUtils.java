@@ -317,20 +317,7 @@ public class BeanUtils {
     private void chanPot(UserBean userBean){
         //添加子节点，自己坐标位置的变化
             if(userBean.getSons().size() == 0 ){  //所添加孩子为第一个孩子，则坐标不影响
-            }else if ( userBean.getSons().size() == 1){
-
-            }else if(userBean.getSons().size() == 2){
-                if (userBean.getSons().get(0).getWife()==null || userBean.getSons().get(0).getWife()==null){
-
-                }else {
-                    int x = (userBean.getSons().get(0).getX() + userBean.getSons().get(userBean.getSons().size()-1).getX())/2;   //不是第一个孩子，说明自己的坐标需要移动，x坐标右移1位
-                    userBean.setX(x);
-                    UserBean wife=userBean.getWife();
-                    if( wife!= null){
-                        wife.setX(x+widhtSpace);
-                    }
-                }
-            }else{
+            }else {
                int x = (userBean.getSons().get(0).getX() + userBean.getSons().get(userBean.getSons().size()-1).getX())/2;   //不是第一个孩子，说明自己的坐标需要移动，x坐标右移1位
                 userBean.setX(x);
                 UserBean wife=userBean.getWife();

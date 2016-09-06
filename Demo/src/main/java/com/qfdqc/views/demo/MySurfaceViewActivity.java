@@ -90,6 +90,7 @@ public class MySurfaceViewActivity extends AppCompatActivity {
         zoomControls.setOnZoomOutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                scale=ViewHelper.getScaleX(mTreeView);
                 if(scale>minScale){
                     scale-=sudu;
                     ViewHelper.setScaleX(mTreeView,scale);
@@ -100,6 +101,7 @@ public class MySurfaceViewActivity extends AppCompatActivity {
         zoomControls.setOnZoomInClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                scale=ViewHelper.getScaleX(mTreeView);
                 if(scale<maxScale){
                     scale+=sudu;
                     ViewHelper.setScaleX(mTreeView,scale);
